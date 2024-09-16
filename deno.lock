@@ -5,6 +5,7 @@
       "jsr:@std/assert@1": "jsr:@std/assert@1.0.4",
       "jsr:@std/internal@^1.0.3": "jsr:@std/internal@1.0.3",
       "npm:neverthrow": "npm:neverthrow@8.0.0",
+      "npm:neverthrow@8.0.0": "npm:neverthrow@8.0.0",
       "npm:neverthrow@^8.0.0": "npm:neverthrow@8.0.0"
     },
     "jsr": {
