@@ -2,7 +2,7 @@
   "name":"@disgruntleddevs/make-safe-func",
   "description":"Finally be sure your function don't throw",
   "license":"MIT",
-  "version":"0.0.3",
+  "version":"0.0.4",
   "exports":"./src/index.ts",
   "tasks": {
     "dev": "deno run --watch main.ts"
