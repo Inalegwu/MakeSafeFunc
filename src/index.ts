@@ -1,6 +1,10 @@
 // deno-lint-ignore-file no-explicit-any
 import { err, ok, type Result, ResultAsync } from "npm:neverthrow@8.0.0";
 
+/**
+* Type signature for the function being passed
+* into makeSafeFunction
+**/
 export type AnyFunction = (...args: any[]) => any;
 
 /**
