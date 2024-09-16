@@ -8,4 +8,10 @@ const unsafeDivide = (a: number, b: number) => {
 const safeDivide = makeSafeFunction(unsafeDivide);
 
 safeDivide(1, 2).match(console.log, console.error);
-safeDivide(1, 0).match(console.log, console.error);
+const zeroDiv = safeDivide(1, 0);
+
+if (zeroDiv.isOk()) {
+	console.log(zeroDiv.value);
+} else {
+	console.log(`IT HAPPENED::${zeroDiv.error}`);
+}
