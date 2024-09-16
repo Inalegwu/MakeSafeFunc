@@ -9,6 +9,33 @@ neverthrow under the hood
 </i>
 
 
+## Why MakeSafeFunc ?
+
+MakeSafeFunc is designed to bring make the Result Types and functional 
+Principles that [neverthrow](https://github.com/supermacro/neverthrow)
+is working to make available to Typescript Developers, To legacy projects.
+
+MakeSafeFunc is targetted at developers working in systems where code has been
+defined from a long time ago and it wouldn't be worth it to convert it all to
+neverthrow. You can simply work from where you are now and integrate with MakeSafeFunc
+instead
+
+```ts
+import {functionFromLegacy} from "@acme/legacy";
+import {makeSafeFunc} from "@disgruntleddevs/make-safe-func";
+
+const result=makeSafeFunc(functionFromLegacy)(params,from,legacyCode)
+
+// all the niceties... none of the refactoring work
+result.match();
+result.unwrapOr();
+result.isOk();
+result.value;
+result.error;
+result.map()
+
+```
+
 
 ## Examples
 
@@ -30,7 +57,7 @@ safeDivide(1/2).match(console.log,console.error);
 ```ts
 import {makeSafeFunc} from "make-safe-func";
 
-function unsafeFetch(url:string){
+async function unsafeFetch(url:string){
   const result=await fetch(url);
 
   return result
@@ -111,3 +138,9 @@ const increment=(v:number)=>v+1;
 // Value
 const res=safeDivide(1/2).andThen()
 ```
+
+<i>The MakeSafeFunc docs are sparse because most of it's power is derived from 
+[neverthrow](https://github.com/supermacro/neverthrow) so the docs for neverthrow
+will be your friend.
+These are simply examples of the context makeSafeFunc is useful for
+</i>
