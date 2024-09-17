@@ -1,11 +1,10 @@
-// deno-lint-ignore-file no-explicit-any
 import { err, ok, type Result, ResultAsync } from "npm:neverthrow@8.0.0";
 
 /**
-* Type signature for the function being passed
-* into makeSafeFunction
-**/
-export type AnyFunction = (...args: any[]) => any;
+ * Type signature for the function being passed
+ * into makeSafeFunction
+ */
+export type AnyFunction = (...args: never[]) => unknown;
 
 /**
  * Wraps a function that could possibly throw
@@ -15,9 +14,7 @@ export type AnyFunction = (...args: any[]) => any;
  * @template F the type of the function to wrap
  * @param fn The Function being wrapped
  * @returns A new function that returns a Result Type
- *
- *
- **/
+ */
 export function makeSafeFunction<F extends AnyFunction>(
 	fn: F,
 ): (
@@ -29,8 +26,9 @@ export function makeSafeFunction<F extends AnyFunction>(
 		try {
 			const result = fn(...args);
 			if (result instanceof Promise) {
-				return ResultAsync.fromPromise(result, (error) =>
-					error instanceof Error ? error : new Error(String(error)),
+				return ResultAsync.fromPromise(
+					result,
+					(error) => error instanceof Error ? error : new Error(String(error)),
 				);
 			}
 			return ok(result);

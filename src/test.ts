@@ -1,17 +1,34 @@
 import { makeSafeFunction } from "./index.ts";
 
 const unsafeDivide = (a: number, b: number) => {
-	if (b === 0) throw new Error("Zero Division Error");
+	if (b === 0) throw new Error("Divide by zero error caught");
+
 	return a / b;
 };
 
+const unsafeAsyncFunction = async (url: string) => {
+	const result = await fetch(url);
+
+	return result;
+};
+
+const safeAsyncFunction = makeSafeFunction(unsafeAsyncFunction);
 const safeDivide = makeSafeFunction(unsafeDivide);
 
-safeDivide(1, 2).match(console.log, console.error);
-const zeroDiv = safeDivide(1, 0);
+const result = await safeAsyncFunction("https://google.com").unwrapOr(
+	new Response("hello world"),
+);
 
-if (zeroDiv.isOk()) {
-	console.log(zeroDiv.value);
+const divideResult = safeDivide(1, 2).unwrapOr(0);
+const divideByZeroResult = safeDivide(2, 0).unwrapOr(-1);
+
+console.log(result);
+console.log(divideResult);
+
+if (divideByZeroResult === -1) {
+	console.log(
+		"If you see this, divideByZeroResult failed... Attempting to Recover",
+	);
 } else {
-	console.log(`IT HAPPENED::${zeroDiv.error}`);
+	console.log(divideByZeroResult);
 }

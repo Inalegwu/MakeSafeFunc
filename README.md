@@ -73,7 +73,7 @@ safeFetch("https://google.com").match(console.log,console.error);
 ```ts
 import {makeSafeFunc} from "make-safe-func";
 
-function unsafeFetch(url:string){
+async function unsafeFetch(url:string){
   const result=await fetch(url);
 
   return result
@@ -88,7 +88,7 @@ safeFetch("https://google.com").match(console.log,console.error);
 ```ts
 import {makeSafeFunc} from "make-safe-func";
 
-function unsafeFetch(url:string){
+async function unsafeFetch(url:string){
   const result=await fetch(url);
 
   return result
