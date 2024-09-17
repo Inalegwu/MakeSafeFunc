@@ -139,6 +139,18 @@ const increment=(v:number)=>v+1;
 const res=safeDivide(1/2).andThen()
 ```
 
+### Importing Third-Party Code
+```ts
+  import {makeSafeFunc} from "@disgruntleddevs/make-safe-func";
+  import {someLibraryFunction} from "@third-party/library";
+
+const safeLibraryFunction=makeSafeFunc(someLibraryFunction);
+
+const result=safeLibraryFunction(params,for,func).unwrapOr("default value")
+
+console.log(result);
+```
+
 <i>The MakeSafeFunc docs are sparse because most of it's power is derived from 
 [neverthrow](https://github.com/supermacro/neverthrow) so the docs for neverthrow
 will be your friend.
