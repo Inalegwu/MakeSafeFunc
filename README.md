@@ -144,8 +144,8 @@ const res=safeDivide(1/2).andThen()
 
 ### Importing Third-Party Code
 ```ts
-  import {makeSafeFunc} from "@disgruntleddevs/make-safe-func";
-  import {someLibraryFunction} from "@third-party/library";
+import {makeSafeFunc} from "@disgruntleddevs/make-safe-func";
+import {someLibraryFunction} from "@third-party/library";
 
 const safeLibraryFunction=makeSafeFunc(someLibraryFunction);
 
