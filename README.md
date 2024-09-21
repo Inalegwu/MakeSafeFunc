@@ -15,7 +15,7 @@ MakeSafeFunc is designed to bring make the Result Types and functional
 Principles that [neverthrow](https://github.com/supermacro/neverthrow)
 is working to make available to Typescript Developers, To legacy projects.
 
-MakeSafeFunc is targetted at developers working in legacy where it wouldn't be worth it to attempt a full conversion to Result types instead of focusing on business logic. Instead developers can work on the code they should be working on while protecting themselves from the errors of:
+MakeSafeFunc is for developers working in legacy where it wouldn't be worth it to attempt a full conversion to Result types instead of focusing on business logic. Instead developers can work on the code they should be working on while protecting themselves from the errors of:
 
 - Third-Party Code
 - Internal Code
