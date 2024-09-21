@@ -155,7 +155,6 @@ console.log(result);
 ```
 
 <i>The MakeSafeFunc docs are sparse because most of it's power is derived from 
-[neverthrow](https://github.com/supermacro/neverthrow) so the docs for neverthrow
-will be your friend.
+[neverthrow](https://github.com/supermacro/neverthrow) so their documentation will be very helpful
 These are simply examples of the context makeSafeFunc is useful for
 </i>
