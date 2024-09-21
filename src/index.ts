@@ -7,16 +7,20 @@ import { err, ok, type Result, ResultAsync } from "npm:neverthrow@8.0.0";
 export type AnyFunction = (...args: never[]) => unknown;
 
 /**
- * Wraps a function that could possibly throw
- * and returns a new function that uses Result<T,E>
- * to ensure errors are handled
  *
- * @template F the type of the function to wrap
- * @param fn The Function being wrapped
- * @returns A new function that returns a Result Type
+ * Create a new function that returns a Result type
+ * Result<A,E>, where A is your return value and E is
+ * the possible Error
+ * 
+ * In case of async functions, A ResultAsync<A,E> is returned
+ * when an `await` keyword isn't used otherwise a Result<A,E>
+ * of the resolved promise is returned
+ * 
+ * @param func The function being wrapped
+ * @returns A new function that returns a Result Type (Result<A,E>)
  */
 export function makeSafeFunction<F extends AnyFunction>(
-	fn: F,
+	func: F,
 ): (
 	...args: Parameters<F>
 ) => ReturnType<F> extends Promise<unknown>
@@ -24,7 +28,7 @@ export function makeSafeFunction<F extends AnyFunction>(
 	: Result<ReturnType<F>, Error> {
 	return ((...args: Parameters<F>) => {
 		try {
-			const result = fn(...args);
+			const result = func(...args);
 			if (result instanceof Promise) {
 				return ResultAsync.fromPromise(
 					result,
