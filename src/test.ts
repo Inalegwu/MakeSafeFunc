@@ -16,7 +16,13 @@ const safeAsyncFunction = makeSafeFunction(unsafeAsyncFunction);
 const safeDivide = makeSafeFunction(unsafeDivide);
 
 const result = await safeAsyncFunction("https://google.com").unwrapOr(
-	new Response("hello world"),
+	new Response("hello world",{
+		status:200,
+		statusText:"Success",
+		headers:{
+			"content-type":"application/json",
+		}
+	}),
 );
 
 const divideResult = safeDivide(1, 2).unwrapOr(0);
