@@ -7,15 +7,14 @@ import { err, ok, type Result, ResultAsync } from "npm:neverthrow@8.0.0";
 export type AnyFunction = (...args: never[]) => unknown;
 
 /**
- *
  * Create a new function that returns a Result type
  * Result<A,E>, where A is your return value and E is
  * the possible Error
- * 
+ *
  * In case of async functions, A ResultAsync<A,E> is returned
  * when an `await` keyword isn't used otherwise a Result<A,E>
  * of the resolved promise is returned
- * 
+ *
  * @param func The function being wrapped
  * @returns A new function that returns a Result Type (Result<A,E>)
  */
@@ -39,5 +38,7 @@ export function makeSafeFunction<F extends AnyFunction>(
 		} catch (error) {
 			return err(error instanceof Error ? error : new Error(String(error)));
 		}
+		// deno-lint-ignore no-explicit-any
 	}) as any;
+	// ^ aids type inference for some reason
 }
